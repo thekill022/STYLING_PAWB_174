@@ -8,14 +8,18 @@ todo.use(bodyParser.json())
 todo.use(express.urlencoded({extended : true}))
 
 // RESTFULL API
-todo.get('/', todoController.read)
+todo.get('/', todoController.readAccount)
+todo.get('/get/:id', todoController.readById)
+todo.get('/all', todoController.readAll)
 todo.post('/', todoController.create)
-todo.put('/', todoController.update)
-todo.delete('/', todoController.delete)
+todo.put('/update/:id', todoController.update)
+todo.delete('/delete/:id', todoController.delete)
 
 // PAGE RENDERING
 todo.get('/dashboard', (req, res) => {
-    res.send('berhasil masuk')
+    const {id, username, email} = req.session.user
+
+    res.render('pages/main', {id, username, email})
 })
 
 module.exports = todo

@@ -1,0 +1,8 @@
+body {
+  height: 100vh;
+}
+
+.bg-repeat {
+  background-image: url("/img/repater-bg.jpg");
+  background-repeat: repeat;
+}

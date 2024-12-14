@@ -20,7 +20,7 @@ app.use(session({
 }));
 
 
-app.use('/login', auth)
+app.use('/auth', auth)
 app.use('/user', user)
 app.use('/todo', middleware.isAuthenticated, todo)
 

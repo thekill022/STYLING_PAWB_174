@@ -6,7 +6,7 @@ exports.create = (req, res) => {
 
     db.query(sql, [username, email, password], (err, result) => {
         if(err) {
-            res.json({
+            res.status(500).json({
                 status : "error : " + err,
                 pesan : "Error saat mencoba menambah user"                    
             })
@@ -105,7 +105,7 @@ exports.updatePass = (req, res) => {
 }
 
 exports.delete = (req, res) => { 
-    const id = req.params.id
+    const id = req.session.user.id
     const sql = "delete from users where id = ?"
 
     db.query(sql, [id], (err, result) => {
